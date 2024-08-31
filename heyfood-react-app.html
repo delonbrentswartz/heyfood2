@@ -1,0 +1,77 @@
+import React from 'react';
+import { Search, ShoppingCart } from 'lucide-react';
+
+const foodCategories = [
+  { emoji: '🍔', name: 'Burgers' },
+  { emoji: '🍕', name: 'Pizza' },
+  { emoji: '🍣', name: 'Sushi' },
+  { emoji: '🥗', name: 'Salads' },
+  { emoji: '🍝', name: 'Italian' },
+  { emoji: '🌮', name: 'Mexican' },
+];
+
+const restaurants = [
+  { name: 'Burger Joint', rating: 4.5, cuisine: 'American • Burgers', image: '/api/placeholder/250/200' },
+  { name: 'Pizza Palace', rating: 4.3, cuisine: 'Italian • Pizza', image: '/api/placeholder/250/200' },
+  { name: 'Sushi Spot', rating: 4.7, cuisine: 'Japanese • Sushi', image: '/api/placeholder/250/200' },
+  { name: 'Taco Fiesta', rating: 4.6, cuisine: 'Mexican • Tacos', image: '/api/placeholder/250/200' },
+];
+
+const HeyFoodApp = () => {
+  return (
+    <div className="max-w-md mx-auto bg-gray-100 h-screen overflow-y-auto">
+      <header className="bg-red-500 text-white p-4 sticky top-0 z-10">
+        <div className="flex justify-between items-center">
+          <h1 className="text-2xl font-bold">HeyFood</h1>
+          <Search className="w-6 h-6" />
+        </div>
+      </header>
+      
+      <main className="p-4">
+        <section className="mb-6">
+          <h2 className="text-lg font-semibold mb-2">Categories</h2>
+          <div className="flex overflow-x-auto space-x-4 pb-2">
+            {foodCategories.map((category, index) => (
+              <div key={index} className="flex flex-col items-center">
+                <div className="bg-white rounded-full p-3 shadow">
+                  <span className="text-2xl">{category.emoji}</span>
+                </div>
+                <span className="text-sm mt-1">{category.name}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+        
+        <section>
+          <h2 className="text-lg font-semibold mb-2">Popular Restaurants</h2>
+          <div className="space-y-4">
+            {restaurants.map((restaurant, index) => (
+              <div key={index} className="bg-white rounded-lg shadow overflow-hidden">
+                <img src={restaurant.image} alt={restaurant.name} className="w-full h-40 object-cover" />
+                <div className="p-4">
+                  <h3 className="font-semibold">{restaurant.name}</h3>
+                  <div className="flex items-center text-sm text-gray-500">
+                    <span className="mr-2">⭐ {restaurant.rating}</span>
+                    <span>{restaurant.cuisine}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </main>
+      
+      <footer className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
+        <div className="flex justify-between items-center">
+          <span className="font-semibold">Cart Total: $0.00</span>
+          <button className="bg-red-500 text-white px-4 py-2 rounded-full flex items-center">
+            <ShoppingCart className="w-5 h-5 mr-2" />
+            View Cart
+          </button>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default HeyFoodApp;
